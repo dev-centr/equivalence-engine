@@ -11,6 +11,7 @@
 !/.gitignore
 !/CHANGELOG.md
 !/README.adoc
+!/MIGRATION.adoc
 !/dub.sdl
 !/dub.selections.json
 !/walkthrough.md
@@ -25,5 +26,5 @@
 !/docs/**
 !/assets/
 !/assets/**
-!/supplemental-ui/
-!/supplemental-ui/**
+!/supplemental-ui-overrides/
+!/supplemental-ui-overrides/**

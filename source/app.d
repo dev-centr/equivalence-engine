@@ -9,14 +9,10 @@ import std.container;
 import sdlang;
 import std.process;
 import std.uni;
-
-// Import from our new library
 import equivalence.engine;
 import equivalence.path;
+import equivalence.cli;
 
-/**
- * CLI wrapper for ≡quivalence ≡ngine
- */
 class EquivalenceCLI {
     RuleEngine engine;
 
@@ -46,10 +42,10 @@ class EquivalenceCLI {
                 }
             }
         }
-        
+
         writeln("\n-------------------------------------------------------");
         writeln("Ruleset Source:     ", rulesDir);
-        writeln("Report Engine Bug:  https://github.com/amdphreak/equivalence-engine/issues");
+        writeln("Report Engine Bug:  https://github.com/dev-centr/equivalence-engine/issues");
         if (engine.currentRepo != "") {
             writeln("Report Ruleset Bug: ", engine.currentRepo, "/issues");
         }
@@ -71,6 +67,7 @@ int main(string[] args) {
     string outDir = "";
     bool inPlace = false;
     bool dryRun = true;
+    bool preferImmutable = true;
 
     auto helpInformation = getopt(
         args,
@@ -80,23 +77,24 @@ int main(string[] args) {
         "rules-repo-branch", "Branch for the rules repository (default: main)", &rulesRepoBranch,
         "library|L", "Library/Binding subpath (e.g., python/qt)", &library,
         "from|f", "Source version (e.g., 5.15)", &fromVer,
-        "to|t", "Target version (e.g., 6.0)", &toVer,
+        "to|t", "Target context or version", &toVer,
         "extensions|e", "Comma-separated extensions", &extensions,
-        "domain|D", "Domain to operate in (code|filesystem)", &domain,
+        "domain|D", "Domain: code|filesystem|cli", &domain,
         "out-dir|o", "Output directory for transformed files", &outDir,
         "in-place|i", "Modify files in-place (destructive)", &inPlace,
-        "dry-run|d", "Explicit dry run (default)", &dryRun
+        "dry-run|d", "Explicit dry run (default)", &dryRun,
+        "prefer-mutable", "Prefer mutable package managers over Nix/Guix", &preferImmutable
     );
 
     if (inPlace) dryRun = false;
     if (outDir != "") dryRun = false;
+    preferImmutable = !preferImmutable;
 
     if (helpInformation.helpWanted) {
-        defaultGetoptPrinter("\u2261quivalence \u2261ngine", helpInformation.options);
+        defaultGetoptPrinter("\u2261quivalence \u2261ngine (dev-centr)", helpInformation.options);
         return 0;
     }
 
-    // 1. Remote URL Support (Archives)
     string actualRulesDir = rulesDir;
     if (rulesDir.startsWith("http://") || rulesDir.startsWith("https://")) {
         string tempRoot = buildPath(tempDir(), "equivalence-engine-cache");
@@ -109,14 +107,12 @@ int main(string[] args) {
 
         if (!exists(downloadPath)) {
             mkdirRecurse(tempRoot);
-            // Use shell-based download if libcurl is missing
             auto pid = spawnProcess(["curl", "-L", "-o", downloadPath, rulesDir]);
             if (wait(pid) != 0) { writeln("Error downloading rules."); return 1; }
         }
         actualRulesDir = downloadPath;
     }
 
-    // 2. Local Archive Support
     string archivePath = "";
     string subPath = "";
     string[] pathParts = actualRulesDir.split(dirSeparator);
@@ -155,12 +151,13 @@ int main(string[] args) {
         } else actualRulesDir = buildPath(extractDir, subPath);
     }
 
-    // 3. Universal "Smart Dive"
     if (exists(buildPath(actualRulesDir, "rules"))) {
          bool looksLikeRuleset = false;
          if (domain == "filesystem") {
              string[] osFolders = ["linux", "windows", "mac", "bsd", "darwin"];
              foreach(os; osFolders) if(exists(buildPath(actualRulesDir, os))) { looksLikeRuleset = true; break; }
+         } else if (domain == "cli") {
+             looksLikeRuleset = exists(buildPath(actualRulesDir, "catalog", "tools.sdl"));
          } else {
              foreach(e; dirEntries(actualRulesDir, SpanMode.shallow)) if(e.name.endsWith(".sdl")) { looksLikeRuleset = true; break; }
          }
@@ -168,7 +165,6 @@ int main(string[] args) {
     }
     rulesDir = actualRulesDir;
 
-    // 4. Remote Repo Support
     string tmpRulesDir = ".equivalence-rules-tmp";
     auto cleanup = {
         if (exists(tmpRulesDir)) {
@@ -192,6 +188,45 @@ int main(string[] args) {
     }
     scope(exit) if (rulesRepo != "") cleanup();
 
+    if (exists(buildPath(rulesDir, "catalog", "tools.sdl")))
+        rulesDir = buildPath(rulesDir, "catalog");
+    else if (domain != "cli" && exists(buildPath(rulesDir, "rules")))
+        rulesDir = buildPath(rulesDir, "rules");
+
+    if (domain == "cli") {
+        string context = toVer;
+        string toolId = args.length > 1 ? args[1] : "";
+        if (context == "" || toolId == "") {
+            writeln("Usage: equivalence-engine --domain cli --to <context> <toolId>");
+            writeln("Example: equivalence-engine --domain cli --rules-repo https://github.com/dev-centr/equivalence-rules-cli --to linux/nix/default gh");
+            return 1;
+        }
+
+        string catalogPath = buildPath(rulesDir, "tools.sdl");
+        if (!exists(catalogPath))
+            catalogPath = buildPath(rulesDir, "..", "catalog", "tools.sdl");
+
+        CliInstallMethod method;
+        if (exists(catalogPath))
+            method = resolveCliInstall(catalogPath, context, toolId, preferImmutable);
+        else
+            method = resolveCliInstallFromRulesDir(rulesDir, context, toolId);
+
+        if (method.command == "") {
+            writeln("No install method for tool '", toolId, "' on context '", context, "'");
+            return 1;
+        }
+
+        writeln("tool:       ", toolId);
+        writeln("context:    ", method.context.length ? method.context : context);
+        writeln("mutable:    ", method.mutableInstall ? "yes" : "no (immutable)");
+        writeln("interactive:", method.interactive ? "yes" : "no");
+        if (method.auditNote.length) writeln("note:       ", method.auditNote);
+        writeln("command:    ", method.command);
+        if (method.verifyCommand.length) writeln("verify:     ", method.verifyCommand);
+        return 0;
+    }
+
     auto cli = new EquivalenceCLI();
     string[] ruleFiles;
 
@@ -202,7 +237,6 @@ int main(string[] args) {
         if (intent == "") { writeln("Error: intent name required."); return 1; }
         ruleFiles = resolveIntent(rulesDir, toContext, intent);
     } else {
-        // Code domain
         if (fromVer != "" && toVer != "") {
             string searchDir = buildPath(rulesDir, library);
             ruleFiles = findMigrationPath(searchDir, fromVer, toVer);

@@ -1,141 +1,45 @@
-= ≡quivalence ≡ngine
+= Equivalence Engine
 
-image::assets/logo/logo.svg[Equivalence Engine logo,128,align=left]
+image:https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/badge.svg[CI status,link=https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml]
 
-image:https://github.com/AMDphreak/equivalence-engine/actions/workflows/ci.yml/badge.svg[CI status,link=https://github.com/AMDphreak/equivalence-engine/actions/workflows/ci.yml]
+The core engine for the Equivalence Adaptation Ecosystem, maintained by link:https://github.com/dev-centr[dev-centr].
 
-The core engine for the Equivalence Adaptation Ecosystem. This tool provides a powerful, version-aware D-based engine for migrating source code between library and framework versions using SDL-based rulesets.
+**Moved from** link:https://github.com/AMDphreak/equivalence-engine[AMDphreak/equivalence-engine] — see link:MIGRATION.adoc[MIGRATION.adoc] in the old repo.
 
 == Ecosystem
 
-* link:https://github.com/AMDphreak/equivalence-engine[≡quivalence ≡ngine] — The core binary that resolves and applies migration and equivalence rules.
-* link:https://github.com/AMDphreak/equivalence-engine-action[Equivalence Engine Action] — Modular GitHub Action to automate code adaptation in CI pipelines.
-* link:https://github.com/AMDphreak/equivalence-rules-code[Equivalence Rules: Code] — Rules for migrating source code between library versions (e.g., PyQt5 to PyQt6).
-* link:https://github.com/AMDphreak/equivalence-rules-filesystem[Equivalence Rules: Filesystem] — Rules for cross-OS path mapping and equivalency.
-* link:https://github.com/AMDphreak/libequivalence[libequivalence] — D library (rule engine and migration-path resolution) used by this CLI.
+* link:https://github.com/dev-centr/equivalence-engine[equivalence-engine] — Core CLI (`code`, `filesystem`, `cli` domains)
+* link:https://github.com/dev-centr/equivalence-rules-cli[equivalence-rules-cli] — Cross-platform CLI tool install profiles for DevCentr
+* link:https://github.com/dev-centr/equivalence-rules-code[equivalence-rules-code] — Code migration rules
+* link:https://github.com/dev-centr/equivalence-rules-filesystem[equivalence-rules-filesystem] — Filesystem path intents
+* link:https://github.com/dev-centr/libequivalence[libequivalence] — D library
 
-== Features
+== CLI domain (DevCentr)
 
-* **Shortest Path Migration**: Automatically find the optimal set of rules to migrate from version `A` to version `B`.
-* **Git Rulesets**: Dynamic retrieval of rulesets directly from Git repositories.
-* **SDL Based**: Human-readable and flexible rules using `sdlang-d`.
-* **Cross Platform**: Available on Windows, macOS, and Linux.
+Resolve an install command for a tool and host context:
+
+[source,bash]
+----
+equivalence-engine --domain cli \
+  --rules-repo https://github.com/dev-centr/equivalence-rules-cli \
+  --to linux/nix/default gh
+----
+
+Prefer immutable Nix installs by default; pass `--prefer-mutable` to favor winget/brew/apt.
 
 == Installation
 
 === Homebrew (macOS/Linux)
+
 [source,bash]
 ----
-brew tap AMDphreak/homebrew-tap
+brew tap dev-centr/tap
 brew install equivalence-engine
 ----
 
 === Winget (Windows)
+
 [source,powershell]
 ----
-winget install AMDphreak.EquivalenceEngine
+winget install dev-centr.EquivalenceEngine
 ----
-
-== Usage
-
-=== Basic Migration
-To migrate a project from version 5.15 to 6.0 using local rules:
-
-[source,bash]
-----
-equivalence-engine --path ./src --rules-dir ./rules/qt --from 5.15 --to 6.0
-----
-
-=== Remote Ruleset (Cloud Rules)
-You can directly use a remote rules repository. The engine will clone the repo, find the necessary rules recursively, and clean up automatically.
-
-[source,bash]
-----
-equivalence-engine --rules-repo https://github.com/AMDphreak/equivalence-rules-code --from 5.15 --to 6.0 --path ./src
-----
-
-=== CLI Options
-
-[cols="1,2"]
-|===
-| Option | Description
-
-| `--path`, `-p`
-| Path to the project or file to process.
-
-| `--rules-dir`, `-R`
-| Local directory containing `.sdl` rulesets.
-
-| `--rules-repo`
-| Git URL of a remote rules repository.
-
-| `--rules-repo-branch`
-| Branch to use for the remote repository (default: `main`).
-
-| `--from`, `-f`
-| Source version (e.g., `1.0`).
-
-| `--to`, `-t`
-| Target version (e.g., `2.0`).
-
-| `--extensions`, `-e`
-| Comma-separated list of file extensions (default: `.py,.cpp,.h`).
-
-| `--dry-run`, `-d`
-| Perform a dry run without modifying files.
-|===
-
-== Contributing Rules
-
-New rules should be added to the appropriate `rules/<type>/<lang>/<library>/` subdirectory in the respective rules repository.
-
-=== Rules Repository Workflow
-
-To ensure rules are easily consumable by the ≡quivalence ≡ngine in CI environments, each rules repository should implement a **Release Workflow**. This workflow packages the `rules/` directory into versioned archives (`.zip` and `.tar.gz`) for ingestion by the engine.
-
-.Example Release Workflow (`.github/workflows/release.yml`)
-[source,yaml]
-----
-name: Release
-on:
-  push:
-    tags: ['v*']
-permissions:
-  contents: write
-jobs:
-  package:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Create Archives
-        run: |
-          mkdir -p dist
-          tar -czf dist/repo-name-${{ github.ref_name }}.tar.gz rules/
-          zip -r dist/repo-name-${{ github.ref_name }}.zip rules/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: rules-archives
-          path: dist/*
-  release:
-    needs: package
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: rules-archives
-      - uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            *.tar.gz
-            *.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-----
-
-== Changelog
- 
-Detailed history of changes is available in link:CHANGELOG.md[CHANGELOG.md].
- 
-== License
-
-MIT License. Copyright (c) 2026 AMDphreak.

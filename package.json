@@ -6,8 +6,7 @@
     "build:local": "antora antora-playbook-local.yml"
   },
   "devDependencies": {
-    "antora": "^3.1.14",
-    "antora-dark-theme": "^1.0.0"
+    "antora": "^3.1.14"
   },
   "packageManager": "pnpm@10.28.1"
 }

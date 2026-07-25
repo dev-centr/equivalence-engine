@@ -1,0 +1,29 @@
+= Equivalence Engine migration (dev-centr)
+
+This repository is the **canonical home** for the Equivalence Adaptation Ecosystem, moved from link:https://github.com/AMDphreak/equivalence-engine[AMDphreak/equivalence-engine].
+
+== Ecosystem (dev-centr org)
+
+* link:https://github.com/dev-centr/equivalence-engine[equivalence-engine] — Core CLI (`code`, `filesystem`, `cli`)
+* link:https://github.com/dev-centr/libequivalence[libequivalence] — D library
+* link:https://github.com/dev-centr/equivalence-rules-code[equivalence-rules-code] — Code migration rules
+* link:https://github.com/dev-centr/equivalence-rules-filesystem[equivalence-rules-filesystem] — Filesystem path intents
+* link:https://github.com/dev-centr/equivalence-rules-cli[equivalence-rules-cli] — CLI tool install catalog (DevCentr)
+
+== New: `cli` domain
+
+Resolves cross-platform install commands for DevCentr:
+
+[source,bash]
+----
+equivalence-engine --domain cli \
+  --rules-repo https://github.com/dev-centr/equivalence-rules-cli \
+  --to linux/nix/default gh
+----
+
+Immutable Nix/Guix installs are preferred by default; use `--prefer-mutable` for winget/brew/apt.
+
+== Packaging
+
+* Homebrew: `brew tap dev-centr/tap && brew install equivalence-engine`
+* Winget: `winget install dev-centr.EquivalenceEngine`

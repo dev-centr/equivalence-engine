@@ -5,6 +5,10 @@ image::logo.svg[Equivalence Engine logo,128,align=left]
 
 The **≡quivalence ≡ngine** is the core binary of the Equivalence Adaptation Ecosystem. Written in high-performance D, it provides a fast, version-aware adaptation processor that migrates source code and configuration files between library/framework versions using lightweight, human-readable SDL rulesets.
 
+== Technical overview
+
+A directed acyclic graph (DAG)-based engine for computing equivalence between software implementations, tool calls, or any other custom mappings. Nodes represent versions, contexts, or intents; SDL rulesets define directed edges; the engine resolves the shortest path from source to target and applies the composed transformations.
+
 == Purpose
 
 As libraries and frameworks evolve, breaking changes make migrations painful and slow. The ≡quivalence ≡ngine is built to solve this. Instead of simple search-and-replace, the engine:
