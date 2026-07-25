@@ -7,7 +7,7 @@ fi
 
 # Download rules
 echo "Downloading latest rules..."
-RULES_URL="https://github.com/AMDphreak/equivalence-rules-code/archive/refs/tags/latest.zip"
+RULES_URL="https://github.com/dev-centr/equivalence-rules-code/archive/refs/tags/latest.zip"
 ZIP_PATH="latest.zip"
 EXTRACT_PATH="rules_code"
 

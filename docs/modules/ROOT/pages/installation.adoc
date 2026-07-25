@@ -27,6 +27,6 @@ brew install equivalence-engine
 == Manual Binary Installation
 
 Pre-compiled native binaries are attached to every release on our GitHub.
-1. Download the archive for your architecture from the link:https://github.com/AMDphreak/equivalence-engine/releases[Releases page].
+1. Download the archive for your architecture from the link:https://github.com/dev-centr/equivalence-engine/releases[Releases page].
 2. Extract the archive.
 3. Move the binary to a folder in your environment's `PATH` (e.g. `/usr/local/bin` on Unix-likes or `C:\Windows\System32` on Windows).

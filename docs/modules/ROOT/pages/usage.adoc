@@ -18,7 +18,7 @@ You can fetch rulesets directly from remote Git repositories. The engine will cl
 
 [source,bash]
 ----
-equivalence-engine --rules-repo https://github.com/AMDphreak/equivalence-rules-code --from 5.15 --to 6.0 --path ./src
+equivalence-engine --rules-repo https://github.com/dev-centr/equivalence-rules-code --from 5.15 --to 6.0 --path ./src
 ----
 
 == CLI Options Reference

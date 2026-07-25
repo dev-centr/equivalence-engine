@@ -4,7 +4,7 @@ image:https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/b
 
 The core engine for the Equivalence Adaptation Ecosystem, maintained by link:https://github.com/dev-centr[dev-centr].
 
-**Moved from** link:https://github.com/AMDphreak/equivalence-engine[AMDphreak/equivalence-engine] — see link:MIGRATION.adoc[MIGRATION.adoc] in the old repo.
+**Moved from** `AMDphreak/equivalence-engine` — see link:MIGRATION.adoc[MIGRATION.adoc].
 
 == Ecosystem
 

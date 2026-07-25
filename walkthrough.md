@@ -62,17 +62,17 @@ family = "linux"
 
 The Equivalence Adaptation Ecosystem is organized into three distinct tiers to separate logic, execution, and content:
 
-1. **The Engine** ([`equivalence-engine`](https://github.com/AMDphreak/equivalence-engine)):
+1. **The Engine** ([`equivalence-engine`](https://github.com/dev-centr/equivalence-engine)):
    - **Role**: Core logic and binary.
    - **Responsibility**: Resolves shortest migration paths, parses SDL rules, and performs file transformations.
    - **Usage**: CLI tool for local development and base for CI.
 
-2. **The Action** ([`equivalence-engine-action`](https://github.com/AMDphreak/equivalence-engine-action)):
+2. **The Action** ([`equivalence-engine-action`](https://github.com/dev-centr/equivalence-engine-action)):
    - **Role**: CI/CD Wrapper.
    - **Responsibility**: Facilitates running the engine in GitHub Actions. Automates D-language setup and ruleset checkouts.
    - **Usage**: Included in `.github/workflows/*.yml`.
 
-3. **Content Repositories** (e.g., [`equivalence-rules-code`](https://github.com/AMDphreak/equivalence-rules-code)):
+3. **Content Repositories** (e.g., [`equivalence-rules-code`](https://github.com/dev-centr/equivalence-rules-code)):
    - **Role**: Rule Definitions.
    - **Responsibility**: Contains the specific SDL files for a domain (Qt, Linux Filesystem, etc.).
    - **Usage**: Passed to the engine via `--rules-repo` or `--rules-dir`.

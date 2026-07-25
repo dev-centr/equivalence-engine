@@ -6,7 +6,7 @@ license "MIT"
 dependency "sdlang-d" version="~>0.10.6"
 dependency "repo-get" version="54c3cd8eded668b41a0cf4015b556492e380adca" repository="git+https://github.com/dlang-supplemental/repo-get.git"
 // DUB 1.41+: git dependencies require a commit hash in `version`.
-dependency "libequivalence" version="6e1706e6fd2db5e1fcd6b29106d92566af1bff95" repository="git+https://github.com/AMDphreak/libequivalence.git"
+dependency "libequivalence" version="6e1706e6fd2db5e1fcd6b29106d92566af1bff95" repository="git+https://github.com/dev-centr/libequivalence.git"
 targetType "executable"
 targetPath "bin"
 mainSourceFile "source/app.d"

@@ -77,7 +77,7 @@ jobs:
         with:
           formula-name: equivalence-engine
           homebrew-tap: AMDphreak/homebrew-tap
-          download-url: https://github.com/AMDphreak/equivalence-engine/releases/download/${{ github.ref_name }}/equivalence-engine-macos-latest
+          download-url: https://github.com/dev-centr/equivalence-engine/releases/download/${{ github.ref_name }}/equivalence-engine-macos-latest
           commit-message: |
             equivalence-engine ${{ github.ref_name }}
         env:

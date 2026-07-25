@@ -21,13 +21,13 @@ As libraries and frameworks evolve, breaking changes make migrations painful and
 The ecosystem is split into 5 modular, cooperative repositories:
 
 * **≡quivalence ≡ngine (this component):** The CLI binary processor.
-* link:https://github.com/AMDphreak/equivalence-engine-action[Equivalence Engine Action]: A modular GitHub Action to automate adaptation in CI pipelines.
-* link:https://github.com/AMDphreak/libequivalence[libequivalence]: The core D library wrapping rules parsing and path mappings, used by the CLI.
-* link:https://github.com/AMDphreak/evolution-rules-code[Evolution Rules: Code]: The official rules library for code files (e.g. PyQt5 to PyQt6). Planned rename: `equivalence-rules-code`.
-* link:https://github.com/AMDphreak/evolution-rules-filesystem[Evolution Rules: Filesystem]: Mappings translating abstract folder references across Operating Systems. Planned rename: `equivalence-rules-filesystem`.
+* link:https://github.com/dev-centr/equivalence-engine-action[Equivalence Engine Action]: A modular GitHub Action to automate adaptation in CI pipelines.
+* link:https://github.com/dev-centr/libequivalence[libequivalence]: The core D library wrapping rules parsing and path mappings, used by the CLI.
+* link:https://github.com/dev-centr/equivalence-rules-code[Equivalence Rules: Code]: The official rules library for code files (e.g. PyQt5 to PyQt6). Planned rename: `equivalence-rules-code`.
+* link:https://github.com/dev-centr/equivalence-rules-filesystem[Equivalence Rules: Filesystem]: Mappings translating abstract folder references across Operating Systems. Planned rename: `equivalence-rules-filesystem`.
 
 == Next Steps
 
 * xref:installation.adoc[Get started by installing the CLI]
 * xref:usage.adoc[Learn the CLI command options]
-* link:https://github.com/AMDphreak/evolution-rules-code[Learn how to write code migration rulesets]
+* link:https://github.com/dev-centr/equivalence-rules-code[Learn how to write code migration rulesets]

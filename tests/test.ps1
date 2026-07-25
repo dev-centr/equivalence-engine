@@ -8,7 +8,7 @@ if (!(Test-Path "../bin/equivalence-engine.exe")) {
 
 # Download rules
 Write-Host "Downloading latest rules..." -ForegroundColor Cyan
-$rulesUrl = "https://github.com/AMDphreak/equivalence-rules-code/archive/refs/tags/latest.zip"
+$rulesUrl = "https://github.com/dev-centr/equivalence-rules-code/archive/refs/tags/latest.zip"
 $zipPath = "latest.zip"
 $extractPath = "rules_code"
 

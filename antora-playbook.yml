@@ -5,7 +5,7 @@ site:
 content:
   sources:
     # Only this repo publishes Antora docs today. Sibling repos link out from index.adoc
-    # until they gain docs/ trees (and rules repos are renamed from evolution-rules-*).
+    # Sibling docs modules live under docs/ in ecosystem repos.
     - url: .
       branches: HEAD
       start_path: docs

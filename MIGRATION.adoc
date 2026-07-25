@@ -1,6 +1,6 @@
 = Equivalence Engine migration (dev-centr)
 
-This repository is the **canonical home** for the Equivalence Adaptation Ecosystem, moved from link:https://github.com/AMDphreak/equivalence-engine[AMDphreak/equivalence-engine].
+This repository is the **canonical home** for the Equivalence Adaptation Ecosystem, moved from the former `AMDphreak/equivalence-engine` (and related `evolution-rules-*`) repositories.
 
 == Ecosystem (dev-centr org)
 

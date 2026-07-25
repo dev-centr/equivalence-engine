@@ -1,6 +1,6 @@
 # [2026-04-10] - Rename to Equivalence Engine
 
-The project and binary were renamed from **Evolution Engine** to **Equivalence Engine** to match the `equivalence-engine` DUB package and the GitHub repository `AMDphreak/equivalence-engine`.
+The project and binary were renamed from **Evolution Engine** to **Equivalence Engine** to match the `equivalence-engine` DUB package and the GitHub repository `dev-centr/equivalence-engine`.
 
 ## Documentation and packaging
 - README, walkthrough, and changelog detail files now use Equivalence naming and updated repository links.

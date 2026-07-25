@@ -4,7 +4,7 @@
 
 ### Added
 
-- `libequivalence` is published at [github.com/AMDphreak/libequivalence](https://github.com/AMDphreak/libequivalence). The engine pins it with a **git commit hash** in `dub.sdl` (required by DUB 1.41+ for `repository` dependencies). Tags `v1.0.0` / `1.0.0` mark that revision for humans; bump the hash when you release a new library version.
+- `libequivalence` is published at [github.com/dev-centr/libequivalence](https://github.com/dev-centr/libequivalence). The engine pins it with a **git commit hash** in `dub.sdl` (required by DUB 1.41+ for `repository` dependencies). Tags `v1.0.0` / `1.0.0` mark that revision for humans; bump the hash when you release a new library version.
 
 ### Changed
 
