@@ -1,31 +1,45 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/equivalence-engine/graphs/contributors]
+image:https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/equivalence-engine/network/members]
+image:https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/equivalence-engine/stargazers]
+image:https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/equivalence-engine/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?style=for-the-badge[Issues]
+endif::[]
+
 = Equivalence Engine
 
+DAG-based equivalence engine: shortest-path resolution across implementations, tool calls, and custom mappings via SDL rulesets.
+
+link:http://dev-centr.github.io/equivalence-engine/[Explore the docs] ·
+link:https://github.com/dev-centr/equivalence-engine/issues[Report Bug] ·
+link:https://github.com/dev-centr/equivalence-engine/issues[Request Feature]
+
 image:https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/badge.svg[CI status,link=https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml]
+
+== About The Project
 
 The core engine for the Equivalence Adaptation Ecosystem, maintained by link:https://github.com/dev-centr[dev-centr].
 
 **Moved from** `AMDphreak/equivalence-engine` — see link:MIGRATION.adoc[MIGRATION.adoc].
 
-== Ecosystem
+=== Ecosystem
 
 * link:https://github.com/dev-centr/equivalence-engine[equivalence-engine] — Core CLI (`code`, `filesystem`, `cli` domains)
 * link:https://github.com/dev-centr/equivalence-rules-cli[equivalence-rules-cli] — Cross-platform CLI tool install profiles for DevCentr
 * link:https://github.com/dev-centr/equivalence-rules-code[equivalence-rules-code] — Code migration rules
 * link:https://github.com/dev-centr/equivalence-rules-filesystem[equivalence-rules-filesystem] — Filesystem path intents
 * link:https://github.com/dev-centr/libequivalence[libequivalence] — D library
-
-== CLI domain (DevCentr)
-
-Resolve an install command for a tool and host context:
-
-[source,bash]
-----
-equivalence-engine --domain cli \
-  --rules-repo https://github.com/dev-centr/equivalence-rules-cli \
-  --to linux/nix/default gh
-----
-
-Prefer immutable Nix installs by default; pass `--prefer-mutable` to favor winget/brew/apt.
 
 == Installation
 
@@ -43,3 +57,25 @@ brew install equivalence-engine
 ----
 winget install dev-centr.EquivalenceEngine
 ----
+
+== Usage
+
+=== CLI domain (DevCentr)
+
+Resolve an install command for a tool and host context:
+
+[source,bash]
+----
+equivalence-engine --domain cli \
+  --rules-repo https://github.com/dev-centr/equivalence-rules-cli \
+  --to linux/nix/default gh
+----
+
+Prefer immutable Nix installs by default; pass `--prefer-mutable` to favor winget/brew/apt.
+
+== Contact
+
+DevCentr.org — support@devcentr.org
+
+* Project: https://github.com/dev-centr/equivalence-engine
+* Site: http://dev-centr.github.io/equivalence-engine/
