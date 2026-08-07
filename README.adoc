@@ -3,7 +3,29 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/dev-centr/equivalence-engine/graphs/contributors"><img src="https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/dev-centr/equivalence-engine/network/members"><img src="https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/dev-centr/equivalence-engine/stargazers"><img src="https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/dev-centr/equivalence-engine/issues"><img src="https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml"><img src="https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+<br />
+<h3 align="center">Equivalence Engine</h3>
+<p align="center">
+DAG-based equivalence engine: shortest-path resolution across implementations, tool calls, and custom mappings via SDL rulesets.<br />
+<a href="http://dev-centr.github.io/equivalence-engine/"><strong>Explore the docs »</strong></a><br /><br />
+<a href="https://github.com/dev-centr/equivalence-engine/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/dev-centr/equivalence-engine/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/equivalence-engine/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/equivalence-engine/network/members]
 image:https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/equivalence-engine/stargazers]
@@ -18,6 +40,7 @@ link:https://github.com/dev-centr/equivalence-engine/issues[Report Bug] ·
 link:https://github.com/dev-centr/equivalence-engine/issues[Request Feature]
 
 image:https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/badge.svg[CI status,link=https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml]
+endif::[]
 
 == About The Project
 
