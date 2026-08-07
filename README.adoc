@@ -3,19 +3,11 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/equivalence-engine/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/equivalence-engine/network/members]
 image:https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/equivalence-engine/stargazers]
 image:https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/equivalence-engine/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dev-centr/equivalence-engine.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dev-centr/equivalence-engine.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dev-centr/equivalence-engine.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?style=for-the-badge[Issues]
-endif::[]
 
 = Equivalence Engine
 
@@ -41,6 +33,8 @@ The core engine for the Equivalence Adaptation Ecosystem, maintained by link:htt
 * link:https://github.com/dev-centr/equivalence-rules-filesystem[equivalence-rules-filesystem] — Filesystem path intents
 * link:https://github.com/dev-centr/libequivalence[libequivalence] — D library
 
+link:#readme-top[back to top]
+
 == Installation
 
 === Homebrew (macOS/Linux)
@@ -58,6 +52,8 @@ brew install equivalence-engine
 winget install dev-centr.EquivalenceEngine
 ----
 
+link:#readme-top[back to top]
+
 == Usage
 
 === CLI domain (DevCentr)
@@ -73,9 +69,13 @@ equivalence-engine --domain cli \
 
 Prefer immutable Nix installs by default; pass `--prefer-mutable` to favor winget/brew/apt.
 
+link:#readme-top[back to top]
+
 == Contact
 
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/equivalence-engine
 * Site: http://dev-centr.github.io/equivalence-engine/
+
+link:#readme-top[back to top]
