@@ -5,7 +5,7 @@
 ### Added
 
 - `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.
-- Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time.
+- Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time. Illustrated (bootstrap, ratchet, facets, argv).
 
 ### Changed
 

@@ -30,4 +30,5 @@ The ecosystem is split into 5 modular, cooperative repositories:
 
 * xref:installation.adoc[Get started by installing the CLI]
 * xref:usage.adoc[Learn the CLI command options]
+* xref:host-awareness.adoc[Host Awareness] -- bake probes at CI time; CLI domain is a catalog, not a rewrite DAG
 * link:https://github.com/dev-centr/equivalence-rules-code[Learn how to write code migration rulesets]

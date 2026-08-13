@@ -14,3 +14,7 @@ ui:
     url: https://github.com/antora-supplemental/antora-dark-theme/releases/download/v1.0.9/ui-bundle.zip
     snapshot: true
   supplemental_files: ./supplemental-ui-overrides
+
+antora:
+  extensions:
+    - require: '@antora/lunr-extension'
