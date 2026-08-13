@@ -1,5 +1,22 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.
+- Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time.
+
+### Changed
+
+- Local/CI builds take `libequivalence` from a sibling `../libequivalence` checkout so catalog `format` / `listCliInstalls` stay in sync.
+
+## [1.3.3] - 2026-07-26
+
+### Changed
+
+- Depend on `repo-get` from the [DUB registry](https://code.dlang.org/packages/repo-get) (`~>0.2.1`) instead of a git commit pin. The package update webhook on `dlang-supplemental/repo-get` keeps registry releases in sync.
+
 ## [1.3.2] - 2026-04-10
 
 ### Added

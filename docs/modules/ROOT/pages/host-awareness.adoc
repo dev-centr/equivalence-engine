@@ -1,0 +1,57 @@
+= Host Awareness and the CLI domain
+:navtitle: Host Awareness
+:description: Bake probes at CI time. Do not ask the engine what OS you are at run time.
+
+Write this so someone with no background can follow.
+
+== What do I need?
+
+PlayTime (the Scriptbook engine) plus this Equivalence Engine for **two different jobs**.
+
+== Two jobs, not one loop
+
+[cols="1,2", options="header"]
+|===
+| When | Job
+
+| **Build (CI)**
+| The engine is a **compiler**. It reads host-probe rules and writes an ordered cascade into PlayTime (`probes.generated.json`). Pin the rules git revision.
+
+| **Run (play time)**
+| PlayTime walks that baked cascade and fills a **Host Identity Record**. Only then may it call this engine for `cli.install` and other intents.
+
+|===
+
+Forbidden: PlayTime calls this engine to learn `family` so that it can call this engine. That never starts.
+
+.Snapshot, then dereference
+image::playtime-bootstrap.svg[alt="Deadlock cycle crossed out; snapshot then Equivalence Engine bind"]
+
+Wanted growth loop: catalogs get richer → CI bakes a better cascade → PlayTime wakes up on more machines → people write more playbooks → they register more intents and probes → the next bake is richer.
+
+.Ratchet at build time
+image::playtime-growth-ratchet.svg[alt="Rules to CI bake to shipped PlayTime to more playbooks back to new catalog rows"]
+
+Canonical write-up: link:https://github.com/dev-centr/scriptbook/blob/main/spec/host-awareness.adoc[scriptbook spec/host-awareness.adoc].
+
+`family` / `inherits` on filesystem `context.sdl` files must stay aligned with that record.
+
+== CLI domain is a catalog, not a rewrite DAG
+
+`--domain code` walks version hops and rewrites files.
+
+`--domain cli` looks up a tool id and returns command rows. `--to` is a host alias such as `windows/winget`. Never `--to windows/pwsh/msi`.
+
+.Columns, not a cube
+image::playtime-facets-not-lattice.svg[alt="Catalog table versus a forbidden path-segment lattice"]
+
+.One suitcase, no costumes
+image::playtime-argv.svg[alt="argv box for winget install; dashed shell coats are not needed"]
+
+List every compatible row (do not only pick one):
+
+----
+equivalence-engine --domain cli --list gh --rules-dir /path/to/catalog
+----
+
+Optional `--to` still picks one. Optional format filter is `--format winget` (a facet), not a path segment.

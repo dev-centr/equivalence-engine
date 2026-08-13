@@ -50,4 +50,32 @@ equivalence-engine --rules-repo https://github.com/dev-centr/equivalence-rules-c
 
 | --dry-run, -d
 | Perform dry run; prints replacements to stdout instead of overwriting files in-place.
+
+| --domain, -D
+| `code` (default), `filesystem`, or `cli`.
+
+| --list
+| With `--domain cli`, print every compatible install method for the tool id (do not pick one). `--to` stays a host alias; do not put a shell in it.
+
+| --format
+| With `--domain cli`, keep only methods with this format facet (`winget`, `deb`, `nix`, …).
 |===
+
+=== CLI domain (install commands)
+
+Pick one method for a host context:
+
+----
+equivalence-engine --domain cli \
+  --rules-repo https://github.com/dev-centr/equivalence-rules-cli \
+  --to linux/nix/default gh
+----
+
+List every method this catalog knows (filter later in PlayTime by host capabilities):
+
+----
+equivalence-engine --domain cli --list gh \
+  --rules-repo https://github.com/dev-centr/equivalence-rules-cli
+----
+
+`--to` is `windows/winget`, never `windows/pwsh/msi`. Format is a column, not a path segment. See xref:host-awareness.adoc[Host Awareness].

@@ -14,23 +14,32 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: equivalence-engine
+      - uses: actions/checkout@v4
+        with:
+          repository: dev-centr/libequivalence
+          path: libequivalence
       - uses: dlang-community/setup-dlang@v1
         with:
           compiler: ldc-latest
       - name: Build
+        working-directory: equivalence-engine
         run: dub build -b release
       - name: Rename binary (Windows)
         if: matrix.os == 'windows-latest'
+        working-directory: equivalence-engine
         run: Move-Item bin/equivalence-engine.exe bin/equivalence-engine-${{ matrix.os }}.exe
         shell: pwsh
       - name: Rename binary (Unix)
         if: matrix.os != 'windows-latest'
+        working-directory: equivalence-engine
         run: mv bin/equivalence-engine bin/equivalence-engine-${{ matrix.os }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: equivalence-engine-${{ matrix.os }}
-          path: bin/equivalence-engine-${{ matrix.os }}*
+          path: equivalence-engine/bin/equivalence-engine-${{ matrix.os }}*
 
   release:
     name: Create GitHub Release

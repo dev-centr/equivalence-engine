@@ -68,6 +68,8 @@ int main(string[] args) {
     bool inPlace = false;
     bool dryRun = true;
     bool preferImmutable = true;
+    bool listMethods = false;
+    string formatFilter = "";
 
     auto helpInformation = getopt(
         args,
@@ -83,7 +85,9 @@ int main(string[] args) {
         "out-dir|o", "Output directory for transformed files", &outDir,
         "in-place|i", "Modify files in-place (destructive)", &inPlace,
         "dry-run|d", "Explicit dry run (default)", &dryRun,
-        "prefer-mutable", "Prefer mutable package managers over Nix/Guix", &preferImmutable
+        "prefer-mutable", "Prefer mutable package managers over Nix/Guix", &preferImmutable,
+        "list", "CLI domain: list compatible install methods (do not pick one)", &listMethods,
+        "format", "CLI domain: keep methods with this format facet (not a --to path segment)", &formatFilter
     );
 
     if (inPlace) dryRun = false;
@@ -196,9 +200,11 @@ int main(string[] args) {
     if (domain == "cli") {
         string context = toVer;
         string toolId = args.length > 1 ? args[1] : "";
-        if (context == "" || toolId == "") {
+        if (toolId == "" || (!listMethods && context == "")) {
             writeln("Usage: equivalence-engine --domain cli --to <context> <toolId>");
+            writeln("       equivalence-engine --domain cli --list <toolId>");
             writeln("Example: equivalence-engine --domain cli --rules-repo https://github.com/dev-centr/equivalence-rules-cli --to linux/nix/default gh");
+            writeln("Do not put a shell in --to (not windows/pwsh/msi). Use --format winget to filter a facet.");
             return 1;
         }
 
@@ -206,11 +212,44 @@ int main(string[] args) {
         if (!exists(catalogPath))
             catalogPath = buildPath(rulesDir, "..", "catalog", "tools.sdl");
 
+        if (listMethods) {
+            HostCaps host;
+            host.preferImmutable = preferImmutable;
+            host.formatFilter = formatFilter;
+            if (context.length) {
+                auto parts = context.split("/");
+                if (parts.length)
+                    host.family = parts[0];
+            }
+            CliInstallMethod[] methods;
+            if (exists(catalogPath))
+                methods = listCliInstalls(catalogPath, toolId, host);
+            if (methods.length == 0) {
+                writeln("No install methods for tool '", toolId, "'");
+                return 1;
+            }
+            writeln("tool: ", toolId);
+            foreach (method; methods) {
+                writeln("---");
+                writeln("context:    ", method.context);
+                writeln("format:     ", method.format);
+                writeln("runtime:    ", method.runtime);
+                writeln("mutable:    ", method.mutableInstall ? "yes" : "no (immutable)");
+                if (method.auditNote.length) writeln("note:       ", method.auditNote);
+                writeln("command:    ", method.command);
+                if (method.verifyCommand.length) writeln("verify:     ", method.verifyCommand);
+            }
+            return 0;
+        }
+
         CliInstallMethod method;
         if (exists(catalogPath))
             method = resolveCliInstall(catalogPath, context, toolId, preferImmutable);
         else
             method = resolveCliInstallFromRulesDir(rulesDir, context, toolId);
+
+        if (formatFilter.length && method.format.length && method.format != formatFilter)
+            method = CliInstallMethod.init;
 
         if (method.command == "") {
             writeln("No install method for tool '", toolId, "' on context '", context, "'");
@@ -219,6 +258,8 @@ int main(string[] args) {
 
         writeln("tool:       ", toolId);
         writeln("context:    ", method.context.length ? method.context : context);
+        writeln("format:     ", method.format);
+        writeln("runtime:    ", method.runtime);
         writeln("mutable:    ", method.mutableInstall ? "yes" : "no (immutable)");
         writeln("interactive:", method.interactive ? "yes" : "no");
         if (method.auditNote.length) writeln("note:       ", method.auditNote);

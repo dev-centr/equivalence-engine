@@ -1,8 +1,8 @@
 {
 	"fileVersion": 1,
 	"versions": {
-		"libequivalence": {"version":"b7cba0253a3f139656754641e1a903121bac0d65","repository":"git+https://github.com/dev-centr/libequivalence.git"},
-		"repo-get": {"version":"54c3cd8eded668b41a0cf4015b556492e380adca","repository":"git+https://github.com/dlang-supplemental/repo-get.git"},
+		"libequivalence": {"path":"../libequivalence"},
+		"repo-get": "0.2.1",
 		"sdlang-d": "0.10.6",
 		"taggedalgebraic": "0.11.24"
 	}

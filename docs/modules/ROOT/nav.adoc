@@ -1,3 +1,4 @@
 * xref:index.adoc[Overview]
 * xref:installation.adoc[Installation & Setup]
 * xref:usage.adoc[CLI Reference]
+* xref:host-awareness.adoc[Host Awareness]

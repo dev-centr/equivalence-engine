@@ -4,9 +4,9 @@ authors "dev-centr"
 copyright "Copyright © 2026, dev-centr"
 license "MIT"
 dependency "sdlang-d" version="~>0.10.6"
-dependency "repo-get" version="54c3cd8eded668b41a0cf4015b556492e380adca" repository="git+https://github.com/dlang-supplemental/repo-get.git"
-// DUB 1.41+: git dependencies require a commit hash in `version`.
-dependency "libequivalence" version="b7cba0253a3f139656754641e1a903121bac0d65" repository="git+https://github.com/dev-centr/libequivalence.git"
+dependency "repo-get" version="~>0.2.1"
+// Sibling checkout in CI (see .github/workflows/ci.yml). Git pin after libequivalence is tagged.
+dependency "libequivalence" path="../libequivalence"
 targetType "executable"
 targetPath "bin"
 mainSourceFile "source/app.d"
