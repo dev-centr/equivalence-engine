@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synchronize the canonical PlayTime SVG deliverables from general-knowledge."""
+"""Synchronize and verify pinned PlayTime SVG deliverables from Scriptbook."""
 
 from __future__ import annotations
 
@@ -13,6 +13,22 @@ from pathlib import Path
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = REPOSITORY_ROOT / "docs/modules/ROOT/images/playtime-diagrams.provenance.json"
+SOURCE_REPOSITORY = "https://github.com/dev-centr/scriptbook"
+SOURCE_COMMIT = "97534371f0da8d81e495cb4cc069704902dbdd69"
+DIAGRAM_NAMES = (
+    "playtime-argv",
+    "playtime-attic-basement",
+    "playtime-bind-flow",
+    "playtime-bootstrap",
+    "playtime-facets-not-lattice",
+    "playtime-growth-ratchet",
+    "playtime-layers",
+    "playtime-overlays",
+    "playtime-sibling-home",
+    "playtime-two-doors",
+    "playtime-venn",
+    "playtime-wrong-translator",
+)
 
 
 def digest(content: bytes) -> str:
@@ -40,6 +56,42 @@ def source_bytes(source_repo: Path, commit: str, path: str) -> bytes:
     return git(source_repo, "show", f"{commit}:{path}")
 
 
+def refresh_manifest(source_repo: Path) -> None:
+    artifacts = []
+    for name in DIAGRAM_NAMES:
+        for suffix, source_path in (
+            (".svg", f"spec/images/{name}.svg"),
+            (".host.svg", f"spec/images/{name}.host.svg"),
+            (".fixed.svg", f"spec/images/fixed/{name}.svg"),
+        ):
+            content = source_bytes(source_repo, SOURCE_COMMIT, source_path)
+            artifacts.append(
+                {
+                    "path": f"docs/modules/ROOT/images/{name}{suffix}",
+                    "sourcePath": source_path,
+                    "sha256": digest(content),
+                }
+            )
+    manifest = {
+        "schema": 1,
+        "source": {
+            "repository": f"{SOURCE_REPOSITORY}.git",
+            "commit": SOURCE_COMMIT,
+            "authority": "spec/diagrams and spec/images",
+        },
+        "notes": [
+            "Unsuffixed files are standalone-adaptive SVGs.",
+            ".host.svg files are runtime-inline host SVGs.",
+            ".fixed.svg files preserve Scriptbook's original fixed artwork.",
+        ],
+        "artifacts": artifacts,
+    }
+    MANIFEST_PATH.write_text(
+        f"{json.dumps(manifest, indent=2)}\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -47,15 +99,9 @@ def main() -> int:
         action="store_true",
         help="report drift without writing files",
     )
-    parser.add_argument(
-        "--source-repo",
-        type=Path,
-        help="general-knowledge checkout (required for synchronization)",
-    )
+    parser.add_argument("--source-repo", type=Path, help="Scriptbook checkout (required for synchronization)")
     args = parser.parse_args()
 
-    manifest = load_manifest()
-    commit = manifest["source"]["commit"]
     failures: list[str] = []
 
     if not args.check and args.source_repo is None:
@@ -63,6 +109,13 @@ def main() -> int:
 
     if args.source_repo is not None:
         source_repo = args.source_repo.resolve()
+        if not args.check:
+            refresh_manifest(source_repo)
+
+    manifest = load_manifest()
+    commit = manifest["source"]["commit"]
+
+    if args.source_repo is not None:
         resolved_commit = (
             git(source_repo, "rev-parse", f"{commit}^{{commit}}")
             .decode("ascii")
@@ -75,12 +128,13 @@ def main() -> int:
 
     for artifact in manifest["artifacts"]:
         relative_path = artifact["path"]
+        source_path = artifact.get("sourcePath")
         expected_hash = artifact["sha256"]
         destination = REPOSITORY_ROOT / relative_path
         canonical: bytes | None = None
 
-        if args.source_repo is not None:
-            canonical = source_bytes(source_repo, commit, relative_path)
+        if args.source_repo is not None and source_path:
+            canonical = source_bytes(source_repo, commit, source_path)
             canonical_hash = digest(canonical)
             if canonical_hash != expected_hash:
                 failures.append(
@@ -100,11 +154,13 @@ def main() -> int:
                 )
             if canonical is not None and destination.read_bytes() != canonical:
                 failures.append(f"{relative_path}: differs from canonical source bytes")
-        else:
+        elif source_path:
             assert canonical is not None
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(canonical)
             print(f"synchronized {relative_path}")
+        elif not destination.is_file() or digest(destination.read_bytes()) != expected_hash:
+            failures.append(f"{relative_path}: preserved fixed asset is missing or modified")
 
     if failures:
         for failure in failures:

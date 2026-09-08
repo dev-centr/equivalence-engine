@@ -6,7 +6,7 @@
 
 - `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.
 - Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time. Illustrated (bootstrap, ratchet, facets, argv).
-- Canonical PlayTime diagrams now include standalone-adaptive, host, and fixed SVG modes copied byte-for-byte from `dev-centr/general-knowledge`, with pinned provenance and an automated drift check.
+- All twelve canonical PlayTime diagrams now include standalone-adaptive, host, and preserved fixed SVG modes copied byte-for-byte from `dev-centr/scriptbook`, with pinned provenance and an automated drift check.
 
 ### Changed
 

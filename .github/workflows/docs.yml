@@ -43,17 +43,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Checkout canonical diagram source
-        uses: actions/checkout@v4
-        with:
-          repository: dev-centr/general-knowledge
-          ref: 137492ea980910d1286663654948bd82d2d5ac4b
-          path: general-knowledge
-
-      - name: Verify canonical PlayTime diagrams
-        run: >-
-          python scripts/sync_playtime_diagrams.py --check
-          --source-repo general-knowledge
+      - name: Verify pinned PlayTime diagrams
+        run: python scripts/sync_playtime_diagrams.py --check
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
