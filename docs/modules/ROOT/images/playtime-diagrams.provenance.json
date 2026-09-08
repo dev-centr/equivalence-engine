@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "https://github.com/dev-centr/general-knowledge.git",
+    "commit": "137492ea980910d1286663654948bd82d2d5ac4b",
+    "authority": "docs/modules/ROOT/images"
+  },
+  "notes": [
+    "The unsuffixed files are standalone-adaptive SVGs.",
+    "The .host.svg files are runtime-inline host SVGs.",
+    "The .fixed.svg files are fixed-palette SVGs.",
+    "playtime-wrong-translator.svg and playtime-two-doors.svg are intentionally excluded."
+  ],
+  "artifacts": [
+    {
+      "path": "docs/modules/ROOT/images/playtime-argv.svg",
+      "sha256": "0d0b362774511d6d2b54782b6d7a1bf557a1892897639edd945df3107f4b087c"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-argv.host.svg",
+      "sha256": "113bc4e67aee6eb9ab1388593186b6457b450eb6537892248b11624d4450e0b9"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-argv.fixed.svg",
+      "sha256": "1d84c53a397664b666945e6b64fe18193bef965961ae99ef4adcdf80db6f38cf"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-attic-basement.svg",
+      "sha256": "13fd62167ec5e56b79e3440620de7a7eb8b22cb05b652a276379fc71a7497a2a"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-attic-basement.host.svg",
+      "sha256": "6166d529b82291f03b5ad4c2778ba145b3d0e68ac8aad701152eb676ca1ea301"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-attic-basement.fixed.svg",
+      "sha256": "3f2e7317994416918d4389a94001d1dbbe573ea3b0eb088944a38bf74880f5d1"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bind-flow.svg",
+      "sha256": "7f407c530a432571512a2b0e6d91b96d9d3ac6a1403c88cf7b7a5f1ede3bda47"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bind-flow.host.svg",
+      "sha256": "2a96d8cc89094aaac4000eac0bd8185b73f2c57148d0f9da6b820eca27760a1a"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bind-flow.fixed.svg",
+      "sha256": "5875f1c267be56d1eacccedef40779404402131fcdcab38dbe6e8c28757f1cf5"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bootstrap.svg",
+      "sha256": "feb1d8f65bd3c829600b1213e0dd77df5d75b2d06f4131a13c7696aa7eede095"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bootstrap.host.svg",
+      "sha256": "be30965e7d1f68b72cbbd30baa3cb978f48d869f219918d207aee59150db9913"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-bootstrap.fixed.svg",
+      "sha256": "3552e31a74f8eb90f5a63ac3656e25df5f8f8053905d7625f72a1a1d7628d7cd"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-facets-not-lattice.svg",
+      "sha256": "eaac7e99c15a3d55438f95bcb7c97013a394f375f07f547d8d6095ddecfaf400"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-facets-not-lattice.host.svg",
+      "sha256": "229f9e6cd3586b0661acb2321e7771e7c876510c743ef28ca6b0ebffd7772735"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-facets-not-lattice.fixed.svg",
+      "sha256": "7578d2b6cdc99c267884575d83ac8792415f4b1c14074db480e33f44d1866b05"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-growth-ratchet.svg",
+      "sha256": "186b47f058a4887a4e4a941c3f77e5d58c16d63f723d9b3f0ac15c6b483c29d8"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-growth-ratchet.host.svg",
+      "sha256": "037571eeec192fab4fd8ed51a086e8986177f051393a1726062fe03b84585617"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-growth-ratchet.fixed.svg",
+      "sha256": "43a802dbb15f5f71f8e58cca046f80a5e6a48707f43bba0c54a086dc791510d2"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-layers.svg",
+      "sha256": "d0d2783f1e4f98bb71431ed9d591e67724985f401437f34d317653aac686527e"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-layers.host.svg",
+      "sha256": "a8e863a9a2b89d28ee6f05017f3fd2fc2f283fa28f42bdfb08e9d64979cf4f73"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-layers.fixed.svg",
+      "sha256": "cae98c1790fcfeae8eea418b29403a92273e431b3098fa5ef43a4390ac5873b4"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-overlays.svg",
+      "sha256": "c702369a5eff0a9a95b41ffd549cc22cffd150eb6ad37f79ee5bc057f004a889"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-overlays.host.svg",
+      "sha256": "15723f8c7c832e1b8eae33aeab47054179aaf493d7e08ab8d9f69f7106e2df46"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-overlays.fixed.svg",
+      "sha256": "9ad77beea886c48690978dfe6d8aecedc2713788cc66d34c096d0d28c2f421e3"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-sibling-home.svg",
+      "sha256": "bc6c8884ccbafca421f2dc827015d7854a762c6d8cbc0f7d4fcb63def859af8b"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-sibling-home.host.svg",
+      "sha256": "475e34ce6fd625c2f1686330045dd973c3d08a17a37ffc53ce58ba0b0855c184"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-sibling-home.fixed.svg",
+      "sha256": "21b5c0a2bf457a1967b1b9734f505c34b303edc07a5fc899203386547f4b7ceb"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-venn.svg",
+      "sha256": "2b48bf2f387665a4167830ec75d821c4b68a3ad632cbe8a9553d4e9d65ebf299"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-venn.host.svg",
+      "sha256": "ea28d140745533ca036491967fd196ee5cd84ddda3b464565ef27cc7d04c1377"
+    },
+    {
+      "path": "docs/modules/ROOT/images/playtime-venn.fixed.svg",
+      "sha256": "99a8221118776f932f96e1ca5c708e5b0c4aaff2c9dd16857b0273505152cdf1"
+    }
+  ]
+}

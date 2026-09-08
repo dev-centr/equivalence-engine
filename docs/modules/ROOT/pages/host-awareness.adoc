@@ -25,12 +25,12 @@ PlayTime (the Scriptbook engine) plus this Equivalence Engine for **two differen
 Forbidden: PlayTime calls this engine to learn `family` so that it can call this engine. That never starts.
 
 .Snapshot, then dereference
-image::playtime-bootstrap.svg[alt="Deadlock cycle crossed out; snapshot then Equivalence Engine bind"]
+image::playtime-bootstrap.svg[alt="Deadlock cycle crossed out; snapshot then Equivalence Engine bind",role=themed-svg]
 
 Wanted growth loop: catalogs get richer → CI bakes a better cascade → PlayTime wakes up on more machines → people write more playbooks → they register more intents and probes → the next bake is richer.
 
 .Ratchet at build time
-image::playtime-growth-ratchet.svg[alt="Rules to CI bake to shipped PlayTime to more playbooks back to new catalog rows"]
+image::playtime-growth-ratchet.svg[alt="Rules to CI bake to shipped PlayTime to more playbooks back to new catalog rows",role=themed-svg]
 
 Canonical write-up: link:https://github.com/dev-centr/scriptbook/blob/main/spec/host-awareness.adoc[scriptbook spec/host-awareness.adoc].
 
@@ -43,10 +43,10 @@ Canonical write-up: link:https://github.com/dev-centr/scriptbook/blob/main/spec/
 `--domain cli` looks up a tool id and returns command rows. `--to` is a host alias such as `windows/winget`. Never `--to windows/pwsh/msi`.
 
 .Columns, not a cube
-image::playtime-facets-not-lattice.svg[alt="Catalog table versus a forbidden path-segment lattice"]
+image::playtime-facets-not-lattice.svg[alt="Catalog table versus a forbidden path-segment lattice",role=themed-svg]
 
 .One suitcase, no costumes
-image::playtime-argv.svg[alt="argv box for winget install; dashed shell coats are not needed"]
+image::playtime-argv.svg[alt="argv box for winget install; dashed shell coats are not needed",role=themed-svg]
 
 List every compatible row (do not only pick one):
 

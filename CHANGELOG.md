@@ -6,10 +6,12 @@
 
 - `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.
 - Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time. Illustrated (bootstrap, ratchet, facets, argv).
+- Canonical PlayTime diagrams now include standalone-adaptive, host, and fixed SVG modes copied byte-for-byte from `dev-centr/general-knowledge`, with pinned provenance and an automated drift check.
 
 ### Changed
 
 - Local/CI builds take `libequivalence` from a sibling `../libequivalence` checkout so catalog `format` / `listCliInstalls` stay in sync.
+- Docs builds now declare the Lunr extension required by the Antora playbook.
 
 ## [1.3.3] - 2026-07-26
 
