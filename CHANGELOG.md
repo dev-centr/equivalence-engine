@@ -2,12 +2,9 @@
 
 ## [Unreleased]
 
-
 ### Added
 
-- Fix docs `site.url` to `dev-centr.github.io` and emit `robots.txt` with Sitemap for the Antora docs tree.
-### Added
-
+- Fix docs `site.url` to `https://dev-centr.github.io/equivalence-engine/docs` (Antora tree under `/docs` next to the homepage) and emit `robots.txt` with Sitemap for that tree.
 - `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.
 - Host Awareness docs: bake probes in CI; do not ask the engine what OS you are at run time. Illustrated (bootstrap, ratchet, facets, argv).
 - All twelve canonical PlayTime diagrams now include standalone-adaptive, host, and preserved fixed SVG modes copied byte-for-byte from `dev-centr/scriptbook`, with pinned provenance and an automated drift check.
