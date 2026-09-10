@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+
+### Added
+
+- Fix docs `site.url` to `dev-centr.github.io` and emit `robots.txt` with Sitemap for the Antora docs tree.
 ### Added
 
 - `--domain cli --list <toolId>` prints every compatible install method. `--format <facet>` filters a column (`winget`, `deb`, `nix`). Do not put a shell in `--to`.

@@ -1,7 +1,11 @@
 site:
   title: ≡quivalence Ecosystem Docs
-  url: https://AMDphreak.github.io/equivalence-engine
+  url: https://dev-centr.github.io/equivalence-engine/docs
   start_page: equivalence-engine:ROOT:index.adoc
+  robots: |
+    User-agent: *
+    Allow: /
+    Sitemap: https://dev-centr.github.io/equivalence-engine/docs/sitemap.xml
 content:
   sources:
     # Only this repo publishes Antora docs today. Sibling repos link out from index.adoc
