@@ -1,5 +1,5 @@
-name: equivalence-engine
+name: tools
+title: Tools
 version: ~
-title: CLI Engine
 nav:
-  - modules/ROOT/nav.adoc
+- modules/equivalence-engine/nav.adoc

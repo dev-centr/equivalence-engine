@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dev-centr.github.io/equivalence-engine/sitemap.xml
-Sitemap: https://dev-centr.github.io/equivalence-engine/docs/sitemap.xml
+Sitemap: https://docs.devcentr.org/tools/equivalence-engine/sitemap.xml
+Sitemap: https://docs.devcentr.org/tools/equivalence-engine/sitemap.xml

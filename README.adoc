@@ -16,7 +16,7 @@ ifdef::env-github[]
 <h3 align="center">Equivalence Engine</h3>
 <p align="center">
 DAG-based equivalence engine: shortest-path resolution across implementations, tool calls, and custom mappings via SDL rulesets.<br />
-<a href="http://dev-centr.github.io/equivalence-engine/"><strong>Explore the docs »</strong></a><br /><br />
+<a href="https://docs.devcentr.org/tools/equivalence-engine/"><strong>Explore the docs »</strong></a><br /><br />
 <a href="https://github.com/dev-centr/equivalence-engine/issues">Report Bug</a>
 &middot;
 <a href="https://github.com/dev-centr/equivalence-engine/issues">Request Feature</a>
@@ -33,9 +33,17 @@ image:https://img.shields.io/github/issues/dev-centr/equivalence-engine.svg?styl
 
 = Equivalence Engine
 
+[NOTE]
+====
+The standalone GitHub Pages docs site (dev-centr.github.io/equivalence-engine) is retired.
+Canonical docs are on the Dev-Centr hub: https://docs.devcentr.org/tools/equivalence-engine/
+The homepage/ tree is retained only as historical landing assets; it is no longer published.
+====
+
+
 DAG-based equivalence engine: shortest-path resolution across implementations, tool calls, and custom mappings via SDL rulesets.
 
-link:http://dev-centr.github.io/equivalence-engine/[Explore the docs] ·
+link:https://docs.devcentr.org/tools/equivalence-engine/[Explore the docs] ·
 link:https://github.com/dev-centr/equivalence-engine/issues[Report Bug] ·
 link:https://github.com/dev-centr/equivalence-engine/issues[Request Feature]
 
@@ -99,6 +107,6 @@ link:#readme-top[back to top]
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/equivalence-engine
-* Site: http://dev-centr.github.io/equivalence-engine/
+* Site: https://docs.devcentr.org/tools/equivalence-engine/
 
 link:#readme-top[back to top]

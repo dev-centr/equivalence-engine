@@ -1,13 +1,6 @@
 {
-  "name": "equivalence-engine-docs",
+  "name": "equivalence-engine",
   "private": true,
-  "scripts": {
-    "build": "antora antora-playbook.yml",
-    "build:local": "antora antora-playbook-local.yml"
-  },
-  "devDependencies": {
-    "@antora/lunr-extension": "1.0.0-alpha.13",
-    "antora": "^3.1.14"
-  },
+  "description": "Equivalence Engine \u2014 Antora component under docs/ is built by the Dev-Centr docs hub",
   "packageManager": "pnpm@10.28.1"
 }

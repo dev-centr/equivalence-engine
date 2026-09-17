@@ -21,14 +21,14 @@ As libraries and frameworks evolve, breaking changes make migrations painful and
 The ecosystem is split into 5 modular, cooperative repositories:
 
 * **≡quivalence ≡ngine (this component):** The CLI binary processor.
-* link:https://github.com/dev-centr/equivalence-engine-action[Equivalence Engine Action]: A modular GitHub Action to automate adaptation in CI pipelines.
-* link:https://github.com/dev-centr/libequivalence[libequivalence]: The core D library wrapping rules parsing and path mappings, used by the CLI.
-* link:https://github.com/dev-centr/equivalence-rules-code[Equivalence Rules: Code]: The official rules library for code files (e.g. PyQt5 to PyQt6). Planned rename: `equivalence-rules-code`.
-* link:https://github.com/dev-centr/equivalence-rules-filesystem[Equivalence Rules: Filesystem]: Mappings translating abstract folder references across Operating Systems. Planned rename: `equivalence-rules-filesystem`.
+* xref:equivalence-engine-action:index.adoc[Equivalence Engine Action] (link:https://github.com/dev-centr/equivalence-engine-action[repo]): reusable GitHub Action that runs adaptations in CI.
+* xref:libequivalence:index.adoc[libequivalence] (link:https://github.com/dev-centr/libequivalence[repo]): core D library for rules parsing and path resolution, consumed by the CLI.
+* xref:equivalence-rules-code:index.adoc[Equivalence Rules: Code] (link:https://github.com/dev-centr/equivalence-rules-code[repo]): official rulesets for source files (e.g. PyQt5 to PyQt6).
+* xref:equivalence-rules-filesystem:index.adoc[Equivalence Rules: Filesystem] (link:https://github.com/dev-centr/equivalence-rules-filesystem[repo]): mappings for abstract folder intents across operating systems.
 
 == Next Steps
 
 * xref:installation.adoc[Get started by installing the CLI]
 * xref:usage.adoc[Learn the CLI command options]
 * xref:host-awareness.adoc[Host Awareness] -- bake probes at CI time; CLI domain is a catalog, not a rewrite DAG
-* link:https://github.com/dev-centr/equivalence-rules-code[Learn how to write code migration rulesets]
+* xref:equivalence-rules-code:index.adoc[Equivalence Rules: Code] (link:https://github.com/dev-centr/equivalence-rules-code[repo]): official rulesets for source files (e.g. PyQt5 to PyQt6).
