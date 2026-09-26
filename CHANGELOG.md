@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Adapt duplicated `playtime-*.svg` figures so Mermaid `#my-svg` fill / `.label` color use `color.text.primary` themed-svg vars (dark-mode text; aligned with general-knowledge).
+
 ### Added
 
 - Fix docs `site.url` to `https://docs.devcentr.org/tools/equivalence-engine` (Antora tree under `/docs` next to the homepage) and emit `robots.txt` with Sitemap for that tree.
@@ -22,6 +26,10 @@
 
 ## [1.3.2] - 2026-04-10
 
+### Fixed
+
+- Adapt duplicated `playtime-*.svg` figures so Mermaid `#my-svg` fill / `.label` color use `color.text.primary` themed-svg vars (dark-mode text; aligned with general-knowledge).
+
 ### Added
 
 - `libequivalence` is published at [github.com/dev-centr/libequivalence](https://github.com/dev-centr/libequivalence). The engine pins it with a **git commit hash** in `dub.sdl` (required by DUB 1.41+ for `repository` dependencies). Tags `v1.0.0` / `1.0.0` mark that revision for humans; bump the hash when you release a new library version.
@@ -39,6 +47,10 @@
 
 ## [1.1.0] - 2026-03-21
 
+### Fixed
+
+- Adapt duplicated `playtime-*.svg` figures so Mermaid `#my-svg` fill / `.label` color use `color.text.primary` themed-svg vars (dark-mode text; aligned with general-knowledge).
+
 ### Added
 
 - Complete rewrite in D Lang for zero-bloat and high performance.
@@ -46,6 +58,10 @@
 - GitHub Action updated to use DUB.
 
 ## [1.0.0] - 2026-03-21
+
+### Fixed
+
+- Adapt duplicated `playtime-*.svg` figures so Mermaid `#my-svg` fill / `.label` color use `color.text.primary` themed-svg vars (dark-mode text; aligned with general-knowledge).
 
 ### Added
 
