@@ -13,14 +13,14 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: equivalence-engine
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: dev-centr/libequivalence
           path: libequivalence
-      - uses: dlang-community/setup-dlang@v1
+      - uses: dlang-community/setup-dlang@v2
         with:
           compiler: ldc-latest
       - name: Build
@@ -36,7 +36,7 @@ jobs:
         working-directory: equivalence-engine
         run: mv bin/equivalence-engine bin/equivalence-engine-${{ matrix.os }}
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: equivalence-engine-${{ matrix.os }}
           path: equivalence-engine/bin/equivalence-engine-${{ matrix.os }}*
@@ -48,14 +48,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: bin
           merge-multiple: true
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: bin/*
           generate_release_notes: true
@@ -67,7 +67,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Winget Releaser
         uses: vedantmgoyal9/winget-releaser@v2
         with:
@@ -82,7 +82,7 @@ jobs:
       contents: write
     steps:
       - name: Update Homebrew Formula
-        uses: mislav/bump-homebrew-formula-action@v3
+        uses: mislav/bump-homebrew-formula-action@v4
         with:
           formula-name: equivalence-engine
           homebrew-tap: AMDphreak/homebrew-tap
