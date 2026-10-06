@@ -30,3 +30,5 @@
 !/assets/**
 !/supplemental-ui-overrides/
 !/supplemental-ui-overrides/**
+!/.editorconfig
+!/.gitattributes
