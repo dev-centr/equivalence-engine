@@ -1,3 +1,4 @@
+.Equivalence Engine
 * xref:index.adoc[Overview]
 * xref:installation.adoc[Installation & Setup]
 * xref:usage.adoc[CLI Reference]
