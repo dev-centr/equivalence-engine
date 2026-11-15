@@ -1,5 +1,6 @@
 ifndef::env-github[:icons: font]
-:toc: preamble
+:toc: macro
+:toc-title:
 :toclevels: 2
 :sectanchors:
 
@@ -49,6 +50,15 @@ link:https://github.com/dev-centr/equivalence-engine/issues[Request Feature]
 
 image:https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml/badge.svg[CI status,link=https://github.com/dev-centr/equivalence-engine/actions/workflows/ci.yml]
 endif::[]
+
+++++
+<details>
+<summary>Table of Contents</summary>
+++++
+toc::[]
+++++
+</details>
+++++
 
 == About The Project
 
